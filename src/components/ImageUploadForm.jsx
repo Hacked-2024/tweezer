@@ -1,6 +1,10 @@
 import { useState } from "react";
 import api from "../services/api";
 
+import "./ImageUploadForm.css"
+
+import "./ImageUploadForm.css"
+
 const ImageUploadForm = ({ currentlyChecked,setFormattedJsonString,setFormattedImageJsonString}) => {
     const [textValue, setTextValue] = useState('');
     const [imageFile, setImageFile] = useState(null);
@@ -149,7 +153,7 @@ const ImageUploadForm = ({ currentlyChecked,setFormattedJsonString,setFormattedI
         <div className="text-input-container">
           <div className="input-wrapper">
           <label htmlFor="text-input">Paste Content: </label><br/>
-          <input
+          <textarea
             type="text"
             id="text-input"
             className="text-input"
