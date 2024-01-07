@@ -1,12 +1,19 @@
 :root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
   text-align: center;
 
   --highlight-colour: #189BCC;
   --background-color: #2e363a;
   --text-box-color: #575757;
+}
+
+#root {
+  width: 100%;
+}
+
+body, html {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
 }
 
 .parent-container {
@@ -15,6 +22,14 @@
   align-items: center; /* Center content horizontally */
   justify-content: flex-start; /* Align content at the top */
   height: 100vh; /* Set the height of the container to full viewport height */
+  width: 100%;
+}
+
+.upload-config-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }
 
 h1 {
