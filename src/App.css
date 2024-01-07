@@ -5,6 +5,7 @@
   text-align: center;
 
   --highlight-colour: #189BCC;
+  --background-color: #2e363a;
 }
 
 .parent-container {
