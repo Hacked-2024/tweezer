@@ -1,3 +1,5 @@
+const MODERATION_ATTRIBS = ["Harassment", "Self Harm", "Hate", "Sexual Content", "Minors", "Violence"]
+
 const extractModerationContentCategories = ( moderationObj ) => {
     const categories = moderationObj.categories
     const result = {
@@ -13,6 +15,7 @@ const extractModerationContentCategories = ( moderationObj ) => {
 
 const extractModerationContentScores = ( moderationObj ) => {
     const scores = moderationObj.category_scores
+    
     const result = {
         "Harassment": scores["harassment"],
         "Hate": scores["hate"],
@@ -24,7 +27,8 @@ const extractModerationContentScores = ( moderationObj ) => {
     return result
 }
 
+
+
 export default {
-    extractModerationContentCategories,
-    extractModerationContentScores
+    extractModerationContentScores, MODERATION_ATTRIBS
 }

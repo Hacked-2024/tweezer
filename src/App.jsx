@@ -12,7 +12,7 @@ const App = () => {
     <div className="parent-container">
       <h1>Tweezer</h1>
       <h3>API for detecting hate speech, misinformation, and harmful content</h3>
-      <ImageUploadForm setOutputText={"a"}/>
+      <ImageUploadForm currentlyChecked={currentlyChecked}/>
       <TextEvaluationCheckboxes currentlyChecked={currentlyChecked} setCurrentlyChecked={setCurrentlyChecked}/>
     </div>
   )
