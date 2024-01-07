@@ -1,5 +1,7 @@
 import axios from "axios"
 
+import apiParser from "./apiParser"
+
 var baseUrl
 
 if (import.meta.env.MODE == "production") {
@@ -8,16 +10,24 @@ if (import.meta.env.MODE == "production") {
     baseUrl = "http://127.0.0.1:5000"
 }
 
-const moderateText = async (text) => {
+const moderateText = async (text, options) => {
     const content = {
         textInput: text
     }
 
     try {
         const res = await axios.post(`${baseUrl}/moderate`, content)
-        return res.data
+        const parsedRes = apiParser.extractModerationContentScores(res.data)
+
+        for (const [key, value] of Object.entries(parsedRes)) {
+            if (!options.includes(key)) {
+                delete parsedRes[key]
+            }
+        }
+        
+        return parsedRes
     } catch (err) {
-        console.log('Failed to get moderation output.');
+        console.log('Failed to get moderation output,', err);
         return ""
     }
 }
@@ -50,8 +60,45 @@ const getOffensivenessText = async (text) => {
     }
 }
 
+const extractAll = async ( textValue, currentlyChecked ) => {
+    var allResults = {
+      }
+
+      if (!currentlyChecked) {return}
+
+      if (currentlyChecked.some(item => apiParser.MODERATION_ATTRIBS.includes(item))) {
+        console.log('Checking moderation...');
+        const moderation = await moderateText(textValue, currentlyChecked)
+
+        allResults = {
+            ...allResults,
+            ...moderation
+        }
+      } 
+
+      if (currentlyChecked.includes("Misinformation")) {
+        console.log('Checking for misinformation...');
+        const truthRes = await factCheckText(textValue)  
+        allResults = {
+            ...allResults,
+            Truthfulness: Number(truthRes.truthfulness)
+        }
+
+      }
+
+      if (currentlyChecked.includes("Offensiveness")) {
+        console.log('Checking for offensiveness...');
+        const offensiveRes = await getOffensivenessText(textValue)
+        allResults = {
+            ...allResults,
+            Offensiveness: Number(offensiveRes.offensiveness)
+        }
+      }
+
+      return allResults
+      
+}
+
 export default {
-    moderateText,
-    factCheckText,
-    getOffensivenessText
+    extractAll
 }

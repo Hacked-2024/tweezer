@@ -1,7 +1,7 @@
 import { useState } from "react";
-import api from "../services/api.jsx";
+import api from "../services/api";
 
-const ImageUploadForm = ({ setOutputText }) => {
+const ImageUploadForm = ({ currentlyChecked }) => {
     const [textValue, setTextValue] = useState('');
     const [imageFile, setImageFile] = useState(null);
     const [dragOver, setDragOver] = useState(false);
@@ -33,20 +33,24 @@ const ImageUploadForm = ({ setOutputText }) => {
       const resizedFile = await resizeImage(file); // Resize the dropped image
       setImageFile(resizedFile);
     };
+
   
     async function handleSubmit(e) {
       e.preventDefault();
+
+      const res = await api.extractAll(
+        textValue, currentlyChecked
+      )
+
+
       console.log('Text Input:', textValue);
       console.log('Image File:', imageFile);
-      const response = await api.moderateText(textValue);
-      console.log('API', response);
-      // const data = await response.json();
-      // console.log('data', data);
-
-      const jsonString = JSON.stringify(response);
-      console.log(jsonString);
-      // setOutputText(data)
-      // Handle form submission logic here (e.g., sending data to the server)
+      console.log("here", res);
+      
+      // const response = await api.moderateText(textValue);
+      // console.log('API', response);
+      // const jsonString = JSON.stringify(response);
+      // console.log(jsonString);
     };
   
     const resizeImage = (file) => {
