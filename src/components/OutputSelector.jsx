@@ -4,10 +4,10 @@ const OutputSelector = ({ text, id }) => {
     return (
         <>
             <div>
-                <div class="box">
+                <div className="box">
                     <input id={id} type="checkbox"/>
-                    <span class="check"></span>
-                    <label for={id}>{text}</label>
+                    <span className="check"></span>
+                    <label htmlFor={id}>{text}</label>
                 </div>
             </div>
         </>
