@@ -17,11 +17,11 @@ const extractModerationContentScores = ( moderationObj ) => {
     const scores = moderationObj.category_scores
     
     const result = {
-        "Harassment": scores["harassment"],
-        "Hate": scores["hate"],
-        "Self Harm": scores["self-harm"],
-        "Sexual": scores["sexual"],
-        "Violence": scores["violence"],    
+        "Harassment": Math.round(scores["harassment"] * 10),
+        "Hate": Math.round(scores["hate"] * 10) ,
+        "Self Harm": Math.round(scores["self-harm"] * 10),
+        "Sexual": Math.round(scores["sexual"] * 10),
+        "Violence": Math.round(scores["violence"] * 10) ,    
     }
 
     return result
