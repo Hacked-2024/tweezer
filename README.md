@@ -1,6 +1,6 @@
 # Tweezer API Call Demo
 
-A front end web demo for testing the [Tweezer API] (https://github.com/my-five-tender-toesies/ai-moderation-apis) which uses Open AI and Zero Shot Image Classification to detect hate speech, misinformation, and harmful content within text and images. Provides sample outputs from the API for entered text and/or uploaded images.
+A front end web demo for testing the [Tweezer API](https://github.com/my-five-tender-toesies/ai-moderation-apis) which uses Open AI and Zero Shot Image Classification to detect hate speech, misinformation, and harmful content within text and images. Provides sample outputs from the API for entered text and/or uploaded images.
 
 ## Dependancies
 "axios": "^1.6.5",
