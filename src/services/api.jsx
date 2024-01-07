@@ -1,5 +1,7 @@
 import axios from "axios"
 
+import apiParser from "./apiParser"
+
 var baseUrl
 
 if (import.meta.env.MODE == "production") {
@@ -15,9 +17,12 @@ const moderateText = async (text) => {
 
     try {
         const res = await axios.post(`${baseUrl}/moderate`, content)
-        return res.data
+        const parsedRes = apiParser.extractModerationContentScores(res.data)
+        console.log(res);
+        
+        return parsedRes
     } catch (err) {
-        console.log('Failed to get moderation output.');
+        console.log('Failed to get moderation output,', err);
         return ""
     }
 }
@@ -50,8 +55,35 @@ const getOffensivenessText = async (text) => {
     }
 }
 
+const extractAll = async ( textValue, currentlyChecked ) => {
+    const allResults = {
+        moderation: null,
+        misinformation: null,
+        offensiveness: null
+      }
+
+      if (!currentlyChecked) {return}
+
+      if (currentlyChecked.some(item => apiParser.MODERATION_ATTRIBS.includes(item))) {
+        allResults.moderation = await moderateText(textValue)
+      } 
+
+      if (currentlyChecked.includes("Misinformation")) {
+        const misinformationRes = await factCheckText(textValue)  
+        console.log(misinformationRes);
+        
+        allResults.misinformation = Number(misinformationRes.truthfulness)
+      }
+
+      if (currentlyChecked.includes("Offensiveness")) {
+        const offensiveRes = await getOffensivenessText(textValue)
+        allResults.offensiveness = Number(offensiveRes.offensiveness)
+      }
+
+      return allResults
+      
+}
+
 export default {
-    moderateText,
-    factCheckText,
-    getOffensivenessText
+    extractAll
 }
