@@ -1,110 +1,80 @@
-.output-selector-container {
+
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100vh;
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    width: 200px;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    font-family: 'Quicksand', sans-serif;
+    line-height: 1.5;
+    font-weight: bold;
 }
 
-.checkbox-wrapper-7 .tgl {
-    display: none;
-}
-
-.checkbox-wrapper-7 .tgl,
-.checkbox-wrapper-7 .tgl:after,
-.checkbox-wrapper-7 .tgl:before,
-.checkbox-wrapper-7 .tgl *,
-.checkbox-wrapper-7 .tgl *:after,
-.checkbox-wrapper-7 .tgl *:before,
-.checkbox-wrapper-7 .tgl+.tgl-btn {
-    box-sizing: border-box;
-}
-
-.checkbox-wrapper-7 .tgl::-moz-selection,
-.checkbox-wrapper-7 .tgl:after::-moz-selection,
-.checkbox-wrapper-7 .tgl:before::-moz-selection,
-.checkbox-wrapper-7 .tgl *::-moz-selection,
-.checkbox-wrapper-7 .tgl *:after::-moz-selection,
-.checkbox-wrapper-7 .tgl *:before::-moz-selection,
-.checkbox-wrapper-7 .tgl+.tgl-btn::-moz-selection,
-.checkbox-wrapper-7 .tgl::selection,
-.checkbox-wrapper-7 .tgl:after::selection,
-.checkbox-wrapper-7 .tgl:before::selection,
-.checkbox-wrapper-7 .tgl *::selection,
-.checkbox-wrapper-7 .tgl *:after::selection,
-.checkbox-wrapper-7 .tgl *:before::selection,
-.checkbox-wrapper-7 .tgl+.tgl-btn::selection {
-    background: none;
-}
-
-.checkbox-wrapper-7 .tgl+.tgl-btn {
-    outline: 0;
-    display: block;
-    width: 4em;
-    height: 2em;
-    position: relative;
-    cursor: pointer;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
+.box {
+    width: 300px;
+    margin: 25px 0;
+    display: flex;
+    align-items: center;
     user-select: none;
-}
 
-.checkbox-wrapper-7 .tgl+.tgl-btn:after,
-.checkbox-wrapper-7 .tgl+.tgl-btn:before {
-    position: relative;
-    display: block;
-    content: "";
-    width: 50%;
-    height: 100%;
-}
+    label {
+        font-size: 26px;
+        color: #4D4D4D;
+        position: absolute;
+        z-index: 10;
+        padding-left: 50px;
+        cursor: pointer;
+    }
 
-.checkbox-wrapper-7 .tgl+.tgl-btn:after {
-    left: 0;
-}
+    input {
+        opacity: 0;
+        visibility: hidden;
+        position: absolute;
 
-.checkbox-wrapper-7 .tgl+.tgl-btn:before {
-    display: none;
-}
+        &:checked {
 
-.checkbox-wrapper-7 .tgl:checked+.tgl-btn:after {
-    left: 50%;
-}
+            ~ .check {
+                border-color: #00EA90;
+                box-shadow: 0px 0px 0px 15px #00EA90 inset;
 
-.checkbox-wrapper-7 .tgl-ios+.tgl-btn {
-    background: #fbfbfb;
-    border-radius: 2em;
-    padding: 2px;
-    transition: all 0.4s ease;
-    border: 1px solid #e8eae9;
-}
+                &::after {
+                    opacity: 1;
+                    transform: scale(1);
+                }
+            }
+        }
+    }
 
-.checkbox-wrapper-7 .tgl-ios+.tgl-btn:after {
-    border-radius: 2em;
-    background: #fbfbfb;
-    transition: left 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), padding 0.3s ease, margin 0.3s ease;
-    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 4px 0 rgba(0, 0, 0, 0.08);
-}
+    .check {
+        width: 30px;
+        height: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        border-radius: 100px;
+        background-color: #FFF;
+        border: 2px solid #00EA90;
+        box-shadow: 0px 0px 0px 0px #00EA90 inset;
+        transition: all 0.15s cubic-bezier(0, 1.05, 0.72, 1.07);
 
-.checkbox-wrapper-7 .tgl-ios+.tgl-btn:hover:after {
-    will-change: padding;
-}
-
-.checkbox-wrapper-7 .tgl-ios+.tgl-btn:active {
-    box-shadow: inset 0 0 0 2em #e8eae9;
-}
-
-.checkbox-wrapper-7 .tgl-ios+.tgl-btn:active:after {
-    padding-right: 0.8em;
-}
-
-.checkbox-wrapper-7 .tgl-ios:checked+.tgl-btn {
-    background: #86d993;
-}
-
-.checkbox-wrapper-7 .tgl-ios:checked+.tgl-btn:active {
-    box-shadow: none;
-}
-
-.checkbox-wrapper-7 .tgl-ios:checked+.tgl-btn:active:after {
-    margin-left: -0.8em;
+        &::after {
+            content: '';
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            z-index: 4;
+            position: absolute;
+            transform: scale(0);
+            background-size: 50%;
+            background-image: url('https://s6.picofile.com/d/8392306668/bacc888c-bed7-41a9-bf24-f6ff0718f471/checkmark.svg');
+            background-repeat: no-repeat;
+            background-position: center;
+            transition-delay: 0.2s !important;
+            transition: all 0.25s cubic-bezier(0, 1.05, 0.72, 1.07);
+        }
+    }
 }
