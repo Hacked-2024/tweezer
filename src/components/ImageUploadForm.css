@@ -15,3 +15,20 @@
     border: none;
     outline: none;
 }
+
+.submit-button {
+    width: 170px;
+    height: 50px;
+    border-radius: 9px;
+    margin-top: 10px;
+    border: none;
+    transition: 0.3s;
+}
+
+.submit-button:hover {
+    box-shadow: rgba(153, 153, 153, 0.2) 0px 7px 29px 0px;
+}
+
+.submit-button:active {
+    background-color: rgb(76, 125, 165) ;
+}
