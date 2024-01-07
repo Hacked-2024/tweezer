@@ -1,8 +1,18 @@
-# React + Vite
+# Tweezer API Call Demo
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+### A front end web demo for testing the [Tweezer API] (https://github.com/my-five-tender-toesies/ai-moderation-apis) which uses Open AI and Zero Shot Image Classification to detect hate speech, misinformation, and harmful content within text and images. Provides sample outputs from the API for entered text and/or uploaded images.
 
-Currently, two official plugins are available:
+## Dependancies
+"axios": "^1.6.5",
+"react": "^18.2.0",
+"react-dom": "^18.2.0"
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Setup
+Run "npm install" and "npm run dev"
+
+## Developers
+Ashley Anderson
+Jacob Feng
+Brant Harker
+Mihiri Kamiss
+Alisa Uhlman
