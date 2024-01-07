@@ -10,7 +10,6 @@ const OutputSelector = ({ text, id, currentlyChecked, setCurrentlyChecked }) => 
             )
         }  else {
             setCurrentlyChecked([
-                
                 ...currentlyChecked,
                 text
             ])

@@ -10,7 +10,7 @@ if (import.meta.env.MODE == "production") {
     baseUrl = "http://127.0.0.1:5000"
 }
 
-const moderateText = async (text) => {
+const moderateText = async (text, options) => {
     const content = {
         textInput: text
     }
@@ -18,6 +18,12 @@ const moderateText = async (text) => {
     try {
         const res = await axios.post(`${baseUrl}/moderate`, content)
         const parsedRes = apiParser.extractModerationContentScores(res.data)
+
+        for (const [key, value] of Object.entries(parsedRes)) {
+            if (!options.includes(key)) {
+                delete parsedRes[key]
+            }
+        }
         
         return parsedRes
     } catch (err) {
@@ -62,7 +68,7 @@ const extractAll = async ( textValue, currentlyChecked ) => {
 
       if (currentlyChecked.some(item => apiParser.MODERATION_ATTRIBS.includes(item))) {
         console.log('Checking moderation...');
-        const moderation = await moderateText(textValue)
+        const moderation = await moderateText(textValue, currentlyChecked)
 
         allResults = {
             ...allResults,
