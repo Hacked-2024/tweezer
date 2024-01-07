@@ -1,9 +1,11 @@
 import axios from "axios"
 
+var baseUrl
+
 if (import.meta.env.MODE == "production") {
-    const baseUrl = ""
+    baseUrl = ""
 } else {
-    const baseUrl = "http://127.0.0.1:5000"
+    baseUrl = "http://127.0.0.1:5000"
 }
 
 const moderateText = async (text) => {
@@ -43,4 +45,10 @@ const getOffensivenessText = async (text) => {
         console.log('Failed to get offensiveness output.');
         return ""
     }
+}
+
+export default {
+    moderateText,
+    factCheckText,
+    getOffensivenessText
 }
