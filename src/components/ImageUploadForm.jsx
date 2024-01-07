@@ -1,7 +1,7 @@
 import { useState } from "react";
 import api from "../services/api";
 
-const ImageUploadForm = ({ currentlyChecked }) => {
+const ImageUploadForm = ({ currentlyChecked,setFormattedJsonString}) => {
     const [textValue, setTextValue] = useState('');
     const [imageFile, setImageFile] = useState(null);
     const [dragOver, setDragOver] = useState(false);
@@ -46,6 +46,15 @@ const ImageUploadForm = ({ currentlyChecked }) => {
       console.log('Text Input:', textValue);
       console.log('Image File:', imageFile);
       console.log("here", res);
+
+    const jsonString = JSON.stringify(res);
+    console.log(jsonString);
+    // Parse the JSON string into a JavaScript object
+    const jsonObject = JSON.parse(jsonString);
+    // Format the JavaScript object back to a formatted JSON string
+    const formattedString = JSON.stringify(jsonObject, null, 2);
+    // Set the formatted JSON string
+    setFormattedJsonString(formattedString);
       
       // const response = await api.moderateText(textValue);
       // console.log('API', response);
