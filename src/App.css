@@ -6,6 +6,7 @@
 
   --highlight-colour: #189BCC;
   --background-color: #2e363a;
+  --text-box-color: #575757;
 }
 
 .parent-container {
@@ -77,6 +78,6 @@ h1 {
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  box-shadow: inset 0 4px 10px rgba(0, 0, 0, 0.8); /* Adjust the shadow values as needed */
   text-align: left;
+  background-color: var(--text-box-color);
 }

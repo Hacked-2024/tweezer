@@ -12,8 +12,14 @@ body {
     line-height: 1.5;
 }
 
+.JSON-output {
+    width: 500px;
+    min-height: 70px;
+    border: none;
+}
+
 .box {
-    width: 250px;
+    width: 170px;
     margin: 25px 0;
     display: flex;
     align-items: center;
@@ -53,7 +59,7 @@ body {
         align-items: center;
         position: relative;
         border-radius: 100px;
-        background-color: #FFF;
+        background-color: var(--background-colour);
         border: 2px solid var( --highlight-colour);
         box-shadow: 0px 0px 0px 0px var( --highlight-colour) inset;
         transition: all 0.15s cubic-bezier(0, 1.05, 0.72, 1.07);

@@ -4,6 +4,7 @@
     resize: none;
     border: none;
     transition: 0.3s;
+    background-color: var(--text-box-color);
 }
 
 #text-input:hover {
