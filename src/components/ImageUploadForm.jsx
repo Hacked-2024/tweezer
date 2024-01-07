@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const ImageUploadForm = () => {
+const ImageUploadForm = ({ setOutputText }) => {
     const [textValue, setTextValue] = useState('');
     const [imageFile, setImageFile] = useState(null);
     const [dragOver, setDragOver] = useState(false);
@@ -37,6 +37,7 @@ const ImageUploadForm = () => {
       e.preventDefault();
       console.log('Text Input:', textValue);
       console.log('Image File:', imageFile);
+      setOutputText(textValue)
       // Handle form submission logic here (e.g., sending data to the server)
     };
   
