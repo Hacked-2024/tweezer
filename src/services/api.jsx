@@ -60,6 +60,21 @@ const getOffensivenessText = async (text) => {
     }
 }
 
+const hatefulImage = async (imageUploaded) => {
+    console.log(imageUploaded);
+    const content = {
+        image: imageUploaded
+    }
+
+    try {
+        const res = await axios.post(`${baseUrl}/hateful-image`, content)
+        return res.data
+    } catch (err) {
+        console.log(err);
+        return ""
+    }
+}
+
 const extractAll = async ( textValue, currentlyChecked ) => {
     var allResults = {
       }
@@ -100,5 +115,6 @@ const extractAll = async ( textValue, currentlyChecked ) => {
 }
 
 export default {
-    extractAll
+    extractAll,
+    hatefulImage
 }
