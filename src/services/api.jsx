@@ -18,7 +18,6 @@ const moderateText = async (text) => {
     try {
         const res = await axios.post(`${baseUrl}/moderate`, content)
         const parsedRes = apiParser.extractModerationContentScores(res.data)
-        console.log(res);
         
         return parsedRes
     } catch (err) {
@@ -56,28 +55,38 @@ const getOffensivenessText = async (text) => {
 }
 
 const extractAll = async ( textValue, currentlyChecked ) => {
-    const allResults = {
-        moderation: null,
-        misinformation: null,
-        offensiveness: null
+    var allResults = {
       }
 
       if (!currentlyChecked) {return}
 
       if (currentlyChecked.some(item => apiParser.MODERATION_ATTRIBS.includes(item))) {
-        allResults.moderation = await moderateText(textValue)
+        console.log('Checking moderation...');
+        const moderation = await moderateText(textValue)
+
+        allResults = {
+            ...allResults,
+            ...moderation
+        }
       } 
 
       if (currentlyChecked.includes("Misinformation")) {
-        const misinformationRes = await factCheckText(textValue)  
-        console.log(misinformationRes);
-        
-        allResults.misinformation = Number(misinformationRes.truthfulness)
+        console.log('Checking for misinformation...');
+        const truthRes = await factCheckText(textValue)  
+        allResults = {
+            ...allResults,
+            Truthfulness: Number(truthRes.truthfulness)
+        }
+
       }
 
       if (currentlyChecked.includes("Offensiveness")) {
+        console.log('Checking for offensiveness...');
         const offensiveRes = await getOffensivenessText(textValue)
-        allResults.offensiveness = Number(offensiveRes.offensiveness)
+        allResults = {
+            ...allResults,
+            Offensiveness: Number(offensiveRes.offensiveness)
+        }
       }
 
       return allResults
