@@ -90,7 +90,8 @@ const ImageUploadForm = ({ setOutputText }) => {
       <div className="parent-container">
       <form onSubmit={handleSubmit}>
         <div className="text-input-container">
-          <label htmlFor="text-input">Text Input: </label><br/>
+          <div className="input-wrapper">
+          <label htmlFor="text-input">Paste Content: </label><br/>
           <input
             type="text"
             id="text-input"
@@ -99,6 +100,7 @@ const ImageUploadForm = ({ setOutputText }) => {
             onChange={handleTextChange}
             placeholder="Enter text here"
           />
+          </div>
         </div>
         <br/>
         <div
@@ -115,7 +117,7 @@ const ImageUploadForm = ({ setOutputText }) => {
                 className="uploaded-image"
               />
             ) : (
-              <span>Drag & Drop or Click to Upload Image</span>
+              <span>Drag & Drop or <u>Click</u> to Upload Image</span>
             )}
           </label>
           <input

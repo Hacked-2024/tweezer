@@ -66,6 +66,6 @@ h1 {
 
 .text-input-container {
   display: flex;
-  align-items: center; /* Align items vertically */
-  justify-content: center; /* Center items horizontally */
+  justify-content: center;
+  text-align: left;
 }
