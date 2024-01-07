@@ -5,7 +5,7 @@ import "./ImageUploadForm.css"
 
 import "./ImageUploadForm.css"
 
-const ImageUploadForm = ({ currentlyChecked,setFormattedJsonString,setFormattedImageJsonString}) => {
+const ImageUploadForm = ({ currentlyChecked,setFormattedJsonString,setFormattedImageJsonString, setIsLoading}) => {
     const [textValue, setTextValue] = useState('');
     const [imageFile, setImageFile] = useState(null);
     const [dragOver, setDragOver] = useState(false);
@@ -65,6 +65,8 @@ const ImageUploadForm = ({ currentlyChecked,setFormattedJsonString,setFormattedI
     async function handleSubmit(e) {
       e.preventDefault();
 
+      setIsLoading(true)
+
       const res = await api.extractAll(
         textValue, currentlyChecked
       )
@@ -75,8 +77,9 @@ const ImageUploadForm = ({ currentlyChecked,setFormattedJsonString,setFormattedI
       const ires = await api.hatefulImage(
         imageBase64
       )
-
       console.log("here", res);
+
+      setIsLoading(false)
 
     const jsonString = JSON.stringify(res);
     console.log(jsonString);
@@ -156,7 +159,7 @@ const ImageUploadForm = ({ currentlyChecked,setFormattedJsonString,setFormattedI
           <textarea
             type="text"
             id="text-input"
-            className="text-input"
+            className="text-input scroll"
             value={textValue}
             onChange={handleTextChange}
             placeholder="Enter text here"
