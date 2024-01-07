@@ -159,7 +159,7 @@ const ImageUploadForm = ({ currentlyChecked,setFormattedJsonString,setFormattedI
           <textarea
             type="text"
             id="text-input"
-            className="text-input"
+            className="text-input scroll"
             value={textValue}
             onChange={handleTextChange}
             placeholder="Enter text here"
