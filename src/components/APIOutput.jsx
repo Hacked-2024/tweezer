@@ -1,42 +1,48 @@
 import React, { useState, useEffect } from 'react';
 
-const APIOutput = ({outputText}) => {
-//   const [data, setData] = useState([]);
+const APIOutput = ({ outputText,  formattedJsonString}) => {
+    //   const [data, setData] = useState([]);
 
 
-//   useEffect(() => {
-//     const fetchData = async () => {
-//       try {
-//         const response = await fetch('https://api.example.com/data');
-//         if (!response.ok) {
-//           throw new Error('Network response was not ok');
-//         }
-//         const apiData = await response.json();
-//         setData(apiData);
-//       } catch (error) {
-//         console.error('Error fetching data:', error);
-//       }
-//     };
+    //   useEffect(() => {
+    //     const fetchData = async () => {
+    //       try {
+    //         const response = await fetch('https://api.example.com/data');
+    //         if (!response.ok) {
+    //           throw new Error('Network response was not ok');
+    //         }
+    //         const apiData = await response.json();
+    //         setData(apiData);
+    //       } catch (error) {
+    //         console.error('Error fetching data:', error);
+    //       }
+    //     };
 
-//     fetchData();
-//   }, []);
+    //     fetchData();
+    //   }, []);
 
-//   return (
-//     <div>
-//       <h1>API Output:</h1>
-//       <ul>
-//         {data.map((item, index) => (
-//           <li key={index}>{JSON.stringify(item)}</li>
-//         ))}
-//       </ul>
-//     </div>
-//   );
+    //   return (
+    //     <div>
+    //       <h1>API Output:</h1>
+    //       <ul>
+    //         {data.map((item, index) => (
+    //           <li key={index}>{JSON.stringify(item)}</li>
+    //         ))}
+    //       </ul>
+    //     </div>
+    //   );
     return (
         <div>
             JSON Response:
             <div>{outputText}</div>
+            <div className="JSON-output">
+                <pre>
+                    <code className="code-inline">{formattedJsonString}</code>
+                </pre>
+            </div>
         </div>
+
     );
 };
-  
-  export default APIOutput;
+
+export default APIOutput;

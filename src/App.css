@@ -69,3 +69,11 @@ h1 {
   justify-content: center;
   text-align: left;
 }
+
+.JSON-output{
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: inset 0 4px 10px rgba(0, 0, 0, 0.8); /* Adjust the shadow values as needed */
+  text-align: left;
+}
