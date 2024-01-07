@@ -14,7 +14,8 @@ const moderateText = async (text) => {
     }
 
     try {
-        return await axios.post(`${baseUrl}/moderate`, content)
+        const res = await axios.post(`${baseUrl}/moderate`, content)
+        return res.data
     } catch (err) {
         console.log('Failed to get moderation output.');
         return ""
@@ -27,7 +28,8 @@ const factCheckText = async (text) => {
     }
 
     try {
-        return await axios.post(`${baseUrl}/moderate`, content)
+        const res = await axios.post(`${baseUrl}/fact-check`, content)
+        return res.data
     } catch (err) {
         console.log('Failed to get fact checking output.');
         return ""
@@ -40,7 +42,8 @@ const getOffensivenessText = async (text) => {
     }
 
     try {
-        return await axios.post(`${baseUrl}/moderate`, content)
+        const res = await axios.post(`${baseUrl}/offensiveness`, content)
+        return res.data
     } catch (err) {
         console.log('Failed to get offensiveness output.');
         return ""

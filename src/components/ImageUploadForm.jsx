@@ -1,4 +1,5 @@
 import { useState } from "react";
+import api from "../services/api.jsx";
 
 const ImageUploadForm = ({ setOutputText }) => {
     const [textValue, setTextValue] = useState('');
@@ -33,11 +34,18 @@ const ImageUploadForm = ({ setOutputText }) => {
       setImageFile(resizedFile);
     };
   
-    const handleSubmit = (e) => {
+    async function handleSubmit(e) {
       e.preventDefault();
       console.log('Text Input:', textValue);
       console.log('Image File:', imageFile);
-      setOutputText(textValue)
+      const response = await api.moderateText(textValue);
+      console.log('API', response);
+      // const data = await response.json();
+      // console.log('data', data);
+
+      const jsonString = JSON.stringify(response);
+      console.log(jsonString);
+      // setOutputText(data)
       // Handle form submission logic here (e.g., sending data to the server)
     };
   
@@ -87,7 +95,7 @@ const ImageUploadForm = ({ setOutputText }) => {
     };
   
     return (
-      <div className="parent-container">
+      <div>
       <form onSubmit={handleSubmit}>
         <div className="text-input-container">
           <div className="input-wrapper">
@@ -119,7 +127,7 @@ const ImageUploadForm = ({ setOutputText }) => {
             ) : (
               <span>Drag & Drop or <u>Click</u> to Upload Image</span>
             )}
-          </label>
+          </label> 
           <input
             type="file"
             id="image-upload"

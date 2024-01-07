@@ -10,7 +10,7 @@
   flex-direction: column;
   align-items: center; /* Center content horizontally */
   justify-content: flex-start; /* Align content at the top */
-  height: 50vh; /* Set the height of the container to full viewport height */
+  height: 100vh; /* Set the height of the container to full viewport height */
 }
 
 h1 {
@@ -61,7 +61,7 @@ h1 {
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Adjust the shadow values as needed */
+  box-shadow: 0 4px 5px rgba(0, 0, 0, 0.5); /* Adjust the shadow values as needed */
 }
 
 .text-input-container {
