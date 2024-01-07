@@ -1,10 +1,11 @@
 import { useState } from "react";
 import api from "../services/api";
 
-const ImageUploadForm = ({ currentlyChecked,setFormattedJsonString}) => {
+const ImageUploadForm = ({ currentlyChecked,setFormattedJsonString,setFormattedImageJsonString}) => {
     const [textValue, setTextValue] = useState('');
     const [imageFile, setImageFile] = useState(null);
     const [dragOver, setDragOver] = useState(false);
+    const [imageBase64, setImageBase64] = useState('');
   
     const handleTextChange = (e) => {
       setTextValue(e.target.value);
@@ -12,6 +13,17 @@ const ImageUploadForm = ({ currentlyChecked,setFormattedJsonString}) => {
   
     const handleImageChange = async (e) => {
       const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+  
+        reader.onloadend = () => {
+          // Update the state with the base64 string
+          setImageBase64(reader.result.split(',')[1]);
+        };
+  
+        // Read the file as a data URL
+        reader.readAsDataURL(file);
+      }
       const resizedFile = await resizeImage(file); // Resize the selected image
       setImageFile(resizedFile);
     };
@@ -29,8 +41,19 @@ const ImageUploadForm = ({ currentlyChecked,setFormattedJsonString}) => {
       e.preventDefault();
       setDragOver(false);
   
-      const file = e.dataTransfer.files[0];
-      const resizedFile = await resizeImage(file); // Resize the dropped image
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+  
+        reader.onloadend = () => {
+          // Update the state with the base64 string
+          setImageBase64(reader.result.split(',')[1]);
+        };
+  
+        // Read the file as a data URL
+        reader.readAsDataURL(file);
+      }
+      const resizedFile = await resizeImage(file); // Resize the selected image
       setImageFile(resizedFile);
     };
 
@@ -45,6 +68,10 @@ const ImageUploadForm = ({ currentlyChecked,setFormattedJsonString}) => {
 
       console.log('Text Input:', textValue);
       console.log('Image File:', imageFile);
+      const ires = await api.hatefulImage(
+        imageBase64
+      )
+
       console.log("here", res);
 
     const jsonString = JSON.stringify(res);
@@ -55,6 +82,15 @@ const ImageUploadForm = ({ currentlyChecked,setFormattedJsonString}) => {
     const formattedString = JSON.stringify(jsonObject, null, 2);
     // Set the formatted JSON string
     setFormattedJsonString(formattedString);
+
+    const jsonImageString = JSON.stringify(ires);
+    console.log(jsonImageString);
+    // Parse the JSON string into a JavaScript object
+    const jsonImageObject = JSON.parse(jsonImageString);
+    // Format the JavaScript object back to a formatted JSON string
+    const formattedImageString = JSON.stringify(jsonImageObject, null, 2);
+    setFormattedImageJsonString(formattedImageString);
+    console.log("ires result:", ires);
       
       // const response = await api.moderateText(textValue);
       // console.log('API', response);
