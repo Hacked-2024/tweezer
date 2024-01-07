@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const ImageUploadForm = () => {
+const ImageUploadForm = ({ setOutputText }) => {
     const [textValue, setTextValue] = useState('');
     const [imageFile, setImageFile] = useState(null);
     const [dragOver, setDragOver] = useState(false);
@@ -37,6 +37,7 @@ const ImageUploadForm = () => {
       e.preventDefault();
       console.log('Text Input:', textValue);
       console.log('Image File:', imageFile);
+      setOutputText(textValue)
       // Handle form submission logic here (e.g., sending data to the server)
     };
   
@@ -89,7 +90,8 @@ const ImageUploadForm = () => {
       <div className="parent-container">
       <form onSubmit={handleSubmit}>
         <div className="text-input-container">
-          <label htmlFor="text-input">Text Input: </label><br/>
+          <div className="input-wrapper">
+          <label htmlFor="text-input">Paste Content: </label><br/>
           <input
             type="text"
             id="text-input"
@@ -98,6 +100,7 @@ const ImageUploadForm = () => {
             onChange={handleTextChange}
             placeholder="Enter text here"
           />
+          </div>
         </div>
         <br/>
         <div
@@ -114,7 +117,7 @@ const ImageUploadForm = () => {
                 className="uploaded-image"
               />
             ) : (
-              <span>Drag & Drop or Click to Upload Image</span>
+              <span>Drag & Drop or <u>Click</u> to Upload Image</span>
             )}
           </label>
           <input
