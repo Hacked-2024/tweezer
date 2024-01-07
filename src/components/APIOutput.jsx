@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const APIOutput = ({formattedJsonString}) => {
+const APIOutput = ({formattedJsonString,formattedImageJsonString}) => {
     //   const [data, setData] = useState([]);
 
 
@@ -36,7 +36,9 @@ const APIOutput = ({formattedJsonString}) => {
             JSON Response:
             <div className="JSON-output">
                 <pre>
-                    <code className="code-inline">{formattedJsonString}</code>
+                    <code className="code-inline">Text Analysis: {formattedJsonString}</code>
+                    <br/>
+                    <code className="code-inline">Image Analysis: {formattedImageJsonString}</code>
                 </pre>
             </div>
         </div>
