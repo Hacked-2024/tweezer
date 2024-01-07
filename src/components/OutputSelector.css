@@ -1,3 +1,10 @@
+.output-selector-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 200px;
+}
+
 .checkbox-wrapper-7 .tgl {
     display: none;
 }
