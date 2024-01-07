@@ -38,7 +38,7 @@ const ImageUploadForm = ({ setOutputText }) => {
       e.preventDefault();
       console.log('Text Input:', textValue);
       console.log('Image File:', imageFile);
-      const response = api.moderateText(textValue);
+      const response = await api.moderateText(textValue);
       console.log('API', response);
       // const data = await response.json();
       // console.log('data', data);
