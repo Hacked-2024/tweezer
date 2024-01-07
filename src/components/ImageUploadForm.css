@@ -1,0 +1,17 @@
+#text-input {
+    width: 500px;
+    height: 300px;
+    resize: none;
+    border: none;
+    transition: 0.3s;
+}
+
+#text-input:hover {
+    box-shadow: rgba(153, 153, 153, 0.2) 0px 7px 29px 0px;
+}
+
+#text-input:focus {
+    box-shadow: rgb(76, 125, 165) 0px 0px 12px 0px;
+    border: none;
+    outline: none;
+}
