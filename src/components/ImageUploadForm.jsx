@@ -88,9 +88,6 @@ const ImageUploadForm = () => {
     return (
       <div className="parent-container">
       <form onSubmit={handleSubmit}>
-        <h1>Tweezer</h1>
-        <h3>API for detecting hate speech, misinformation, and harmful content</h3>
-        <br/>
         <div className="text-input-container">
           <label htmlFor="text-input">Text Input: </label><br/>
           <input
