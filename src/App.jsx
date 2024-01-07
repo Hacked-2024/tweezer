@@ -2,6 +2,8 @@ import './App.css'
 
 import ImageUploadForm from './components/ImageUploadForm'
 import APIOutput from './components/APIOutput'
+import TextEvaluationCheckboxes from './components/TextEvaluationCheckboxes';
+
 import { useState } from "react";
 
 const App = () => {
@@ -12,6 +14,7 @@ const App = () => {
       <h3>API for detecting hate speech, misinformation, and harmful content</h3>
       <ImageUploadForm setOutputText={setOutputText}/>
       <APIOutput outputText={outputText}/>
+      <TextEvaluationCheckboxes/>
     </div>
   )
 }
