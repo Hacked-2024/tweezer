@@ -33,7 +33,6 @@ const APIOutput = ({outputText}) => {
 //   );
     return (
         <div>
-            JSON Response:
             <div>{outputText}</div>
         </div>
     );
